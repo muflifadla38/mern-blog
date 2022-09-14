@@ -22,7 +22,7 @@ const Icon = ({ url, ...rest }) => {
   );
 };
 
-Icon.propsTypes = { url: PropTypes.string };
+Icon.propTypes = { url: PropTypes.string };
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -78,7 +78,5 @@ const Footer = () => {
     </div>
   );
 };
-
-Footer.propsTypes = { url: PropTypes.string, label: PropTypes.string };
 
 export default Footer;
