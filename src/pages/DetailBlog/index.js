@@ -1,4 +1,3 @@
-import React from "react";
 import "./detailblog.scss";
 import { Button, Gap } from "../../components";
 import { LoginBg } from "../../assets";

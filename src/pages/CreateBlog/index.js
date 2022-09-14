@@ -1,4 +1,3 @@
-import React from "react";
 import "./createblog.scss";
 import { Button, Gap, Input, TextArea, Upload } from "../../components";
 import { LoginBg } from "../../assets";

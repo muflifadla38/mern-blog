@@ -1,4 +1,3 @@
-import React from "react";
 import { LoginBg } from "../../assets";
 import { Input, Button, Gap, Link } from "../../components";
 import { useNavigate } from "react-router-dom";

@@ -1,4 +1,3 @@
-import React from "react";
 import "./register.scss";
 import { RegisterBg } from "../../assets";
 import { Input, Button, Gap, Link } from "../../components";

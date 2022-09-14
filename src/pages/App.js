@@ -1,4 +1,3 @@
-import React from "react";
 import MainRoutes from "../config";
 import "./App.css";
 

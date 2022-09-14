@@ -1,4 +1,3 @@
-import React from "react";
 import "./mainapp.scss";
 import { Routes, Route } from "react-router-dom";
 import { Footer, Header } from "../../components";

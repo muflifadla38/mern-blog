@@ -1,4 +1,3 @@
-import React from "react";
 import "./header.scss";
 import { Gap, Link } from "../../../components";
 import { useNavigate } from "react-router-dom";
