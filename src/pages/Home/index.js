@@ -13,7 +13,7 @@ const Home = () => {
 
   useEffect(() => {
     // Fetch API using Axios
-    Axios.get(`${url}/v1/blog/posts?page=1`)
+    Axios.get(`${url}/v1/blog/posts`)
       .then((result) => {
         const responseAPI = result.data;
         

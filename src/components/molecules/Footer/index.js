@@ -22,7 +22,7 @@ const Icon = ({ url, ...rest }) => {
   );
 };
 
-Icon.propTypes = { url: PropTypes.String };
+Icon.propsTypes = { url: PropTypes.string };
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -40,32 +40,32 @@ const Footer = () => {
           <Icon
             url="https://www.facebook.com"
             src={IconFacebook}
-            css={"socmed-icon"}
+            className={"socmed-icon"}
           />
           <Icon
             url="https://twitter.com/muflifadla38"
             src={IconTwitter}
-            css="socmed-icon"
+            className="socmed-icon"
           />
           <Icon
             url="https://instagram.com/muflifadla38"
             src={IconInstagram}
-            css="socmed-icon"
+            className="socmed-icon"
           />
           <Icon
             url="https://telegram.com/muflifadla38"
             src={IconTelegram}
-            css="socmed-icon"
+            className="socmed-icon"
           />
           <Icon
             url="https://wa.me/6289669644474"
             src={IconWhatsapp}
-            css="socmed-icon"
+            className="socmed-icon"
           />
           <Icon
             url="https://github.com/muflifadla38"
             src={IconGithub}
-            css="socmed-icon"
+            className="socmed-icon"
           />
         </div>
       </div>
