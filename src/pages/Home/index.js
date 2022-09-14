@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import "./home.scss";
@@ -7,11 +7,17 @@ import Gap from "../../components/atoms/Gap";
 import { BlogItem } from "../../components";
 
 const Home = () => {
-  // Fetch API using Axios
+  //Init useState posts
+  const [dataPost, setDataPost] = useState([]);
+  const url = "http://localhost:4000";
   useEffect(() => {
-    Axios.get("http://localhost:4000/v1/blog/posts")
+    // Fetch API using Axios
+    Axios.get(`${url}/v1/blog/posts`)
       .then((result) => {
-        console.log("Data API: ", result.data);
+        const responseAPI = result.data;
+
+        //Set datapost value to ResponseAPI
+        setDataPost(responseAPI.data);
       })
       .catch((err) => {
         console.log("Error: ", err);
@@ -29,48 +35,19 @@ const Home = () => {
       />
 
       <div className="container">
-        <BlogItem
-          title="Post Pertama"
-          tag="Technology"
-          author="Mufli Fadla"
-          img="https://i.pravatar.cc/40?img=1"
-          date="10 Sep 22"
-        />
-        <BlogItem
-          title="Post Kedua"
-          tag="Technology"
-          author="Mufli Fadla"
-          img="https://i.pravatar.cc/40?img=1"
-          date="10 Sep 22"
-        />
-        <BlogItem
-          title="Post Ketiga"
-          tag="Technology"
-          author="Mufli Fadla"
-          img="https://i.pravatar.cc/40?img=1"
-          date="10 Sep 22"
-        />
-        <BlogItem
-          title="Post Keempat"
-          tag="Technology"
-          author="Mufli Fadla"
-          img="https://i.pravatar.cc/40?img=1"
-          date="10 Sep 22"
-        />
-        <BlogItem
-          title="Post Kelima"
-          tag="Technology"
-          author="Mufli Fadla"
-          img="https://i.pravatar.cc/40?img=1"
-          date="10 Sep 22"
-        />
-        <BlogItem
-          title="Post Keenam"
-          tag="Technology"
-          author="Mufli Fadla"
-          img="https://i.pravatar.cc/40?img=1"
-          date="10 Sep 22"
-        />
+        {dataPost.map((post) => {
+          return (
+            <BlogItem
+              key={post._id}
+              title={post.title}
+              img={`${url}/${post.image}`}
+              body={post.body}
+              date={post.createdAt}
+              tag="Technology"
+              // author={post.author.name}
+            />
+          );
+        })}
       </div>
 
       <Gap height={"1em"} />
