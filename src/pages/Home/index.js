@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Axios from "axios";
 import "./home.scss";
 import Button from "../../components/atoms/Button";
 import Gap from "../../components/atoms/Gap";
 import { BlogItem } from "../../components";
-import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  // Fetch API using Axios
+  useEffect(() => {
+    Axios.get("http://localhost:4000/v1/blog/posts")
+      .then((result) => {
+        console.log("Data API: ", result.data);
+      })
+      .catch((err) => {
+        console.log("Error: ", err);
+      });
+  }, []);
+
   const navigate = useNavigate();
 
   return (
