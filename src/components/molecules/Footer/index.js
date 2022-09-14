@@ -1,0 +1,80 @@
+import React from "react";
+import "./footer.scss";
+import {
+  IconFacebook,
+  IconGithub,
+  IconInstagram,
+  IconTelegram,
+  IconTwitter,
+  IconWhatsapp,
+  Logo,
+} from "../../../assets";
+import { Gap } from "../../atoms";
+import { useNavigate } from "react-router-dom";
+
+const Icon = ({ url, src, css }) => {
+  return (
+    <div>
+      <a href={url}>
+        <img src={src} className={css} alt="icon" />
+      </a>
+    </div>
+  );
+};
+
+const Footer = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="footer py-2">
+      <Gap height={"1em"} />
+      <div className="row">
+        <div className="col footer-left">
+          <div className="pointer" onClick={() => navigate("/")}>
+            <img src={Logo} className="footer-icon" alt="footer icon" />
+          </div>
+        </div>
+        <div className="col footer-right">
+          <Icon
+            url="https://www.facebook.com"
+            src={IconFacebook}
+            css={"socmed-icon"}
+          />
+          <Icon
+            url="https://twitter.com/muflifadla38"
+            src={IconTwitter}
+            css="socmed-icon"
+          />
+          <Icon
+            url="https://instagram.com/muflifadla38"
+            src={IconInstagram}
+            css="socmed-icon"
+          />
+          <Icon
+            url="https://telegram.com/muflifadla38"
+            src={IconTelegram}
+            css="socmed-icon"
+          />
+          <Icon
+            url="https://wa.me/6289669644474"
+            src={IconWhatsapp}
+            css="socmed-icon"
+          />
+          <Icon
+            url="https://github.com/muflifadla38"
+            src={IconGithub}
+            css="socmed-icon"
+          />
+        </div>
+      </div>
+      <Gap className="divider" height={"0.5em"} />
+      <Gap height={"1em"} />
+      <div className="row copyright">
+        <p className="text-center">Copyright &#169; 2021 MERN Blog</p>
+      </div>
+      <Gap height={"1em"} />
+    </div>
+  );
+};
+
+export default Footer;

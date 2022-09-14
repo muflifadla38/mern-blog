@@ -1,0 +1,17 @@
+.register-content {
+  display: flex;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.left {
+  width: 40%;
+  margin: 8em;
+}
+
+.illustration {
+  flex: 1;
+  overflow: hidden;
+  // box-sizing: border-box;
+  // width: 60%;
+}
