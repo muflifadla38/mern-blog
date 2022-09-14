@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const TextArea = ({ label, ...rest }) => {
   return (
@@ -12,5 +13,7 @@ const TextArea = ({ label, ...rest }) => {
     </div>
   );
 };
+
+TextArea.propTypes = { label: PropTypes.string };
 
 export default TextArea;

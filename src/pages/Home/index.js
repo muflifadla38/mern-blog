@@ -10,12 +10,13 @@ const Home = () => {
   //Init useState posts
   const [dataPost, setDataPost] = useState([]);
   const url = "http://localhost:4000";
+
   useEffect(() => {
     // Fetch API using Axios
-    Axios.get(`${url}/v1/blog/posts`)
+    Axios.get(`${url}/v1/blog/posts?page=1`)
       .then((result) => {
         const responseAPI = result.data;
-
+        
         //Set datapost value to ResponseAPI
         setDataPost(responseAPI.data);
       })
@@ -43,8 +44,7 @@ const Home = () => {
               img={`${url}/${post.image}`}
               body={post.body}
               date={post.createdAt}
-              tag="Technology"
-              // author={post.author.name}
+              author={post.author.name}
             />
           );
         })}

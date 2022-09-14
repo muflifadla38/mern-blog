@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./footer.scss";
 import {
   IconFacebook,
@@ -12,15 +13,17 @@ import {
 import { Gap } from "../../atoms";
 import { useNavigate } from "react-router-dom";
 
-const Icon = ({ url, src, css }) => {
+const Icon = ({ url, ...rest }) => {
   return (
     <div>
       <a href={url}>
-        <img src={src} className={css} alt="icon" />
+        <img {...rest} alt="icon" />
       </a>
     </div>
   );
 };
+
+Icon.propTypes = { url: PropTypes.String };
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -76,5 +79,7 @@ const Footer = () => {
     </div>
   );
 };
+
+Footer.propsTypes = { url: PropTypes.string, label: PropTypes.string };
 
 export default Footer;

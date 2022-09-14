@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./link.scss";
 
 const Link = ({ pclass, label, url, uclass, ulabel, ...rest }) => {
@@ -13,5 +14,13 @@ const Link = ({ pclass, label, url, uclass, ulabel, ...rest }) => {
     </div>
   );
 };
+
+Link.propTypes = {
+  pclass: PropTypes.string,
+  label: PropTypes.string,
+  url: PropTypes.string,
+  uclass: PropTypes.string,
+  ulabel: PropTypes.string,
+}
 
 export default Link;

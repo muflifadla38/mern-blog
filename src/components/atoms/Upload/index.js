@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./upload.scss";
 import Gap from "../Gap";
 
@@ -16,5 +17,7 @@ const Upload = ({ label, src }) => {
     </div>
   );
 };
+
+Upload.propTypes = {label: PropTypes.string, src: PropTypes.string};
 
 export default Upload;

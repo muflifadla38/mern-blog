@@ -1,4 +1,4 @@
-import logo from "../assets/image/logo.svg";
+import React from "react";
 import MainRoutes from "../config";
 import "./App.css";
 

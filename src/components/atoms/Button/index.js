@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./button.scss";
 
 const Button = ({ label, type, ...rest }) => {
@@ -9,6 +10,11 @@ const Button = ({ label, type, ...rest }) => {
       </button>
     </div>
   );
+};
+
+Button.propTypes = {
+  label: PropTypes.string,
+  type: PropTypes.string,
 };
 
 export default Button;
