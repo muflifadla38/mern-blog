@@ -1,3 +1,4 @@
-import MainRoutes from './Routes';
+import MainRoutes from "./Routes";
+import Store from "./Redux/Store";
 
-export default MainRoutes;
+export { MainRoutes, Store };

@@ -5,10 +5,14 @@ import "./home.scss";
 import Button from "../../components/atoms/Button";
 import Gap from "../../components/atoms/Gap";
 import { BlogItem } from "../../components";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   //Init useState posts
   const [dataPost, setDataPost] = useState([]);
+  const stateValue = useSelector((state) => state);
+  console.log(stateValue);
+
   const url = "http://localhost:4000";
 
   useEffect(() => {
@@ -16,7 +20,7 @@ const Home = () => {
     Axios.get(`${url}/v1/blog/posts`)
       .then((result) => {
         const responseAPI = result.data;
-        
+
         //Set datapost value to ResponseAPI
         setDataPost(responseAPI.data);
       })
