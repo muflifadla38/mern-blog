@@ -8,19 +8,15 @@ import Gap from "../../components/atoms/Gap";
 import { BlogItem } from "../../components";
 
 const Home = () => {
-  //Init Global State posts
-  const { dataPosts, author } = useSelector((state) => state);
+  // Init Global State posts
+  const { dataPosts } = useSelector((state) => state.HomeReducer);
   const dispatch = useDispatch();
-
-  setTimeout(() => {
-    dispatch({ type: "UPDATE_AUTHOR" });
-  }, 3000);
 
   const url = "http://localhost:4000";
 
   useEffect(() => {
     // Fetch API using Axios
-    Axios.get(`${url}/v1/blog/posts`)
+    Axios.get(`${url}/v1/blog/posts?perPage=2`)
       .then((result) => {
         const responseAPI = result.data;
 
@@ -41,7 +37,7 @@ const Home = () => {
         label="Create Post"
         onClick={() => navigate("/create-blog")}
       />
-      <p>{author}</p>
+
       <div className="container">
         {dataPosts.map((post) => {
           return (
