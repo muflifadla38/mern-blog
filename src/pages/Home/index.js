@@ -1,17 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import "./home.scss";
 import Button from "../../components/atoms/Button";
 import Gap from "../../components/atoms/Gap";
 import { BlogItem } from "../../components";
-import { useSelector } from "react-redux";
 
 const Home = () => {
-  //Init useState posts
-  const [dataPost, setDataPost] = useState([]);
-  const stateValue = useSelector((state) => state);
-  console.log(stateValue);
+  //Init Global State posts
+  const { dataPosts, author } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  setTimeout(() => {
+    dispatch({ type: "UPDATE_AUTHOR" });
+  }, 3000);
 
   const url = "http://localhost:4000";
 
@@ -21,8 +24,8 @@ const Home = () => {
       .then((result) => {
         const responseAPI = result.data;
 
-        //Set datapost value to ResponseAPI
-        setDataPost(responseAPI.data);
+        //Dispatch to Redux
+        dispatch({ type: "UPDATE_DATA_POSTS", payload: responseAPI.data });
       })
       .catch((err) => {
         console.log("Error: ", err);
@@ -38,9 +41,9 @@ const Home = () => {
         label="Create Post"
         onClick={() => navigate("/create-blog")}
       />
-
+      <p>{author}</p>
       <div className="container">
-        {dataPost.map((post) => {
+        {dataPosts.map((post) => {
           return (
             <BlogItem
               key={post._id}
