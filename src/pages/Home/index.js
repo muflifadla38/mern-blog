@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setDataPosts } from "../../config/Redux/Action/HomeAction";
@@ -8,20 +8,27 @@ import Gap from "../../components/atoms/Gap";
 import { BlogItem } from "../../components";
 
 const Home = () => {
-  const navigate = useNavigate();
+  //Pagination Local state
+  const [page, setPage] = useState(1);
 
   // Init Global State posts
-  const { dataPosts } = useSelector((state) => state.HomeReducer);
+  const { dataPosts, pageInfo } = useSelector((state) => state.HomeReducer);
   const dispatch = useDispatch();
 
   const url = "http://localhost:4000";
-  console.log("old: ", dataPosts);
-
   useEffect(() => {
-    dispatch(setDataPosts());
-  }, [dispatch]);
+    dispatch(setDataPosts(page));
+  }, [page, dispatch]);
 
-  console.log("new: ", dataPosts);
+  const previous = () => {
+    setPage(page <= 1 ? 1 : page - 1);
+  };
+
+  const next = () => {
+    setPage(page === pageInfo.total ? pageInfo.total : page + 1);
+  };
+
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -50,7 +57,7 @@ const Home = () => {
       <div className="container">
         <ul className="page">
           <li className="page-btn">
-            <Button type="transparent" label="Previous" />
+            <Button type="transparent" label="Previous" onClick={previous} />
           </li>
           <li className="page-numbers active"> 1</li>
           <li className="page-numbers">2</li>
@@ -61,7 +68,7 @@ const Home = () => {
           <li className="page-dots">...</li>
           <li className="page-numbers"> 10</li>
           <li className="page-btn">
-            <Button type="transparent" label="Next" />
+            <Button type="transparent" label="Next" onClick={next} />
           </li>
         </ul>
       </div>
