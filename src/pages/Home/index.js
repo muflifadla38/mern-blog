@@ -1,34 +1,27 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { setDataPosts } from "../../config/Redux/Action/HomeAction";
 import "./home.scss";
 import Button from "../../components/atoms/Button";
 import Gap from "../../components/atoms/Gap";
 import { BlogItem } from "../../components";
 
 const Home = () => {
+  const navigate = useNavigate();
+
   // Init Global State posts
   const { dataPosts } = useSelector((state) => state.HomeReducer);
   const dispatch = useDispatch();
 
   const url = "http://localhost:4000";
+  console.log("old: ", dataPosts);
 
   useEffect(() => {
-    // Fetch API using Axios
-    Axios.get(`${url}/v1/blog/posts?perPage=2`)
-      .then((result) => {
-        const responseAPI = result.data;
+    dispatch(setDataPosts());
+  }, [dispatch]);
 
-        //Dispatch to Redux
-        dispatch({ type: "UPDATE_DATA_POSTS", payload: responseAPI.data });
-      })
-      .catch((err) => {
-        console.log("Error: ", err);
-      });
-  }, []);
-
-  const navigate = useNavigate();
+  console.log("new: ", dataPosts);
 
   return (
     <div>
