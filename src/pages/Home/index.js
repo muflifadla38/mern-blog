@@ -66,7 +66,7 @@ const Home = () => {
           <li className="page-numbers">5</li>
           <li className="page-numbers">6</li>
           <li className="page-dots">...</li>
-          <li className="page-numbers"> 10</li>
+          <li className="page-numbers">{pageInfo.total}</li>
           <li className="page-btn">
             <Button type="transparent" label="Next" onClick={next} />
           </li>
