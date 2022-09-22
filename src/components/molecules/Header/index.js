@@ -9,7 +9,9 @@ const Header = () => {
     <div className="header row">
       <div className="col">
         <Gap height={"1.2em"} />
-        <h2 className="pointer">MERN Blog</h2>
+        <h2 className="pointer" onClick={() => navigate("/")}>
+          MERN Blog
+        </h2>
         <Gap height={"1.2em"} />
       </div>
       <div className="col">
