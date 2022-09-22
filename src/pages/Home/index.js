@@ -48,6 +48,7 @@ const Home = () => {
               body={post.body}
               date={post.createdAt}
               author={post.author.name}
+              _id={post._id}
             />
           );
         })}

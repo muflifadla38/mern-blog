@@ -1,14 +1,18 @@
-import "./blogItem.scss";
 import { useNavigate } from "react-router-dom";
+import dateFormat from "dateformat";
+import "./blogItem.scss";
 
 const BlogItem = (props) => {
   const navigate = useNavigate();
 
   // Destructuring props
-  const { title, img, body, date, author } = props || {};
+  const { title, img, body, date, author, _id } = props || {};
 
   return (
-    <div className="card pointer" onClick={() => navigate("/detail-blog")}>
+    <div
+      className="card pointer"
+      onClick={() => navigate(`/detail-blog/${_id}`)}
+    >
       <div className="card-header">
         <img src={img} alt="card-img" className="card-image" width="600" />
       </div>
@@ -26,7 +30,7 @@ const BlogItem = (props) => {
           />
           <div className="user-info">
             <h5>{author}</h5>
-            <small>{date}</small>
+            <small>{dateFormat(date, "dd mmm yy")}</small>
           </div>
         </div>
       </div>
