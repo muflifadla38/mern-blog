@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setDataPosts } from "../../config/Redux/Action/HomeAction";
+import { setDataPosts } from "../../config/Redux/Action";
 import "./home.scss";
 import Button from "../../components/atoms/Button";
 import Gap from "../../components/atoms/Gap";
