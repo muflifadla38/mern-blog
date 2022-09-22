@@ -2,7 +2,7 @@ import Axios from "axios";
 
 export const setDataPosts = (page) => (dispatch) => {
   // Fetch API using Axios
-  Axios.get(`http://localhost:4000/v1/blog/posts?page=${page}&perPage=2`)
+  Axios.get(`http://localhost:4000/v1/blog/posts?page=${page}&perPage=6`)
     .then((result) => {
       const responseAPI = result.data;
 
