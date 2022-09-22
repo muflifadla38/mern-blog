@@ -1,13 +1,20 @@
-// import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setForm, setImgPreview, postToAPI } from "../../config/Redux/Action";
+import { useEffect, useState } from "react";
+import Axios from "axios";
+import {
+  setForm,
+  setImgPreview,
+  postToAPI,
+  updateToAPI,
+} from "../../config/Redux/Action";
 import "./createblog.scss";
 import { Button, Gap, Input, TextArea, Upload } from "../../components";
 
 const CreateBlog = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isUpdate, setIsUpdate] = useState(false);
   const { form, imgPreview } = useSelector((state) => state.CreateBlogReducer);
   const { title, body } = form;
 
@@ -18,14 +25,32 @@ const CreateBlog = () => {
   };
 
   const onSubmit = () => {
-    postToAPI(form);
+    console.log("file: ", event.target.files);
+    isUpdate ? updateToAPI(form, id) : postToAPI(form);
   };
+
+  //Update Post
+  const id = useParams().id;
+  useEffect(() => {
+    if (id) {
+      setIsUpdate(true);
+      Axios.get(`http://localhost:4000/v1/blog/post/${id}`)
+        .then((res) => {
+          const data = res.data.data;
+          dispatch(setForm("title", data.title));
+          dispatch(setForm("body", data.body));
+          dispatch(setForm("image", data.image));
+          dispatch(setImgPreview(`http://localhost:4000/${data.image}`));
+        })
+        .catch((err) => console.log("err", err));
+    }
+  }, [id]);
 
   return (
     <div className="create-blog-wrapper">
       <Button type="primary" label="Back" onClick={() => navigate("/")} />
       <Gap height={"2em"} />
-      <h3>Create New Blog Post</h3>
+      <h3>{isUpdate ? "Update" : "Create New"} Post</h3>
       <Gap height={"2em"} />
       <Input
         label="Title"
@@ -52,7 +77,7 @@ const CreateBlog = () => {
       <Gap height={"2em"} />
       <Button
         type="primary"
-        label="Save"
+        label={isUpdate ? "Update" : "Save"}
         onClick={onSubmit}
         // onClick={() => navigate("/detail-blog")}
       />

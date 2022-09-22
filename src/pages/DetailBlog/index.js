@@ -7,8 +7,7 @@ import { Button, Gap } from "../../components";
 
 const DetailBlog = () => {
   const navigate = useNavigate();
-  const params = useParams();
-  const id = params.id;
+  const id = useParams().id;
   const [detailPost, setDetailPost] = useState({});
   const { title, body, image, author, createdAt } = detailPost;
 

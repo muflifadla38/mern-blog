@@ -9,17 +9,40 @@ const BlogItem = (props) => {
   const { title, img, body, date, author, _id } = props || {};
 
   return (
-    <div
-      className="card pointer"
-      onClick={() => navigate(`/detail-blog/${_id}`)}
-    >
-      <div className="card-header">
+    <div className="card">
+      <div
+        className="card-header pointer"
+        onClick={() => navigate(`/detail-blog/${_id}`)}
+      >
         <img src={img} alt="card-img" className="card-image" width="600" />
       </div>
       <div className="card-body">
-        <span className="tag tag-blue">Technology</span>
-        <h4>{title}</h4>
-        <p>{body}</p>
+        <div className="row">
+          <div className="col">
+            <span className="tag tag-blue">Technology</span>
+          </div>
+          <div className="col-1">
+            <span
+              className="tag tag-brown pointer"
+              onClick={() => navigate(`/create-blog/${_id}`)}
+            >
+              Edit
+            </span>
+            <span
+              className="tag tag-red pointer"
+              onClick={() => navigate(`/delete-blog/${_id}`)}
+            >
+              Delete
+            </span>
+          </div>
+        </div>
+        <div
+          className="pointer"
+          onClick={() => navigate(`/detail-blog/${_id}`)}
+        >
+          <h4>{title}</h4>
+          <p>{body}</p>
+        </div>
       </div>
       <div className="card-footer">
         <div className="user">
