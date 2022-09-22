@@ -6,7 +6,7 @@ const BlogItem = (props) => {
   const navigate = useNavigate();
 
   // Destructuring props
-  const { title, img, body, date, author, _id } = props || {};
+  const { title, img, body, date, author, _id, onDelete } = props || {};
 
   return (
     <div className="card">
@@ -28,10 +28,7 @@ const BlogItem = (props) => {
             >
               Edit
             </span>
-            <span
-              className="tag tag-red pointer"
-              onClick={() => navigate(`/delete-blog/${_id}`)}
-            >
+            <span className="tag tag-red pointer" onClick={() => onDelete(_id)}>
               Delete
             </span>
           </div>

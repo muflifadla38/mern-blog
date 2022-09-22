@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setDataPosts } from "../../config/Redux/Action";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import "./home.scss";
-import Button from "../../components/atoms/Button";
-import Gap from "../../components/atoms/Gap";
-import { BlogItem } from "../../components";
+import { Button, Gap, BlogItem } from "../../components";
+import Axios from "axios";
 
 const Home = () => {
   //Pagination Local state
@@ -30,6 +31,31 @@ const Home = () => {
 
   const navigate = useNavigate();
 
+  const deletePost = (id) => {
+    confirmAlert({
+      title: "Confirm to submit",
+      message: "Are you sure to delete post?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            console.log("User agree");
+            Axios.delete(`${url}/v1/blog/post/${id}`)
+              .then((res) => {
+                dispatch(setDataPosts(page));
+                console.log("Delete post Success", res);
+              })
+              .catch((err) => console.log(err));
+          },
+        },
+        {
+          label: "No",
+          onClick: () => console.log("User disagree"),
+        },
+      ],
+    });
+  };
+
   return (
     <div>
       <Button
@@ -49,6 +75,7 @@ const Home = () => {
               date={post.createdAt}
               author={post.author.name}
               _id={post._id}
+              onDelete={deletePost}
             />
           );
         })}
@@ -60,12 +87,7 @@ const Home = () => {
           <li className="page-btn">
             <Button type="transparent" label="Previous" onClick={previous} />
           </li>
-          <li className="page-numbers active"> 1</li>
-          <li className="page-numbers">2</li>
-          <li className="page-numbers">3</li>
-          <li className="page-numbers">4</li>
-          <li className="page-numbers">5</li>
-          <li className="page-numbers">6</li>
+          <li className="page-numbers active">{pageInfo.page}</li>
           <li className="page-dots">...</li>
           <li className="page-numbers">{pageInfo.total}</li>
           <li className="page-btn">
